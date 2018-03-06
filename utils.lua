@@ -59,11 +59,7 @@ end
 function utils.map(fun, iter)
     local out = {}
     for k, v in pairs(iter) do
-        if type(v) == 'table' then
-            out[k] = map(fun, v)
-        else
-            out[k] = fun(v)
-        end
+        out[k] = fun(v)
     end
     return out
 end
@@ -71,11 +67,7 @@ end
 function utils.imap(fun, iter)
     local out = {}
     for k, v in ipairs(iter) do
-        if type(v) == 'table' then
-            out[k] = imap(fun, v)
-        else
-            out[k] = fun(v)
-        end
+        out[k] = fun(v)
     end
     return out
 end
@@ -83,12 +75,8 @@ end
 function utils.filter(fun, iter)
     local out = {}
     for k, v in pairs(iter) do
-        if type(v) == 'table' then
-            out[k] = filter(fun, v)
-        else
-            if fun(v) then 
-                table.insert(out, v)
-            end
+        if fun(v) then 
+            table.insert(out, v)
         end
     end
     return out    
